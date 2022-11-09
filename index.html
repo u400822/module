@@ -1,120 +1,261 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-                <title>Apache HTTP Server Test Page powered by CentOS</title>
-                <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <!-- Bootstrap -->
-    <link href="/noindex/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="noindex/css/open-sans.css" type="text/css" />
-
-<style type="text/css"><!--
-
-body {
-  font-family: "Open Sans", Helvetica, sans-serif;
-  font-weight: 100;
-  color: #ccc;
-  background: rgba(10, 24, 55, 1);
-  font-size: 16px;
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+ <HEAD>
+  <TITLE>Test</TITLE>
+  <META NAME="Generator" CONTENT="EditPlus">
+  <META NAME="Author" CONTENT="">
+  <META NAME="Keywords" CONTENT="">
+  <META NAME="Description" CONTENT="">
+  <style>
+  html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: #000;
 }
-
-h2, h3, h4 {
-  font-weight: 200;
+canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
-
-h2 {
-  font-size: 28px;
-}
-
-.jumbotron {
-  margin-bottom: 0;
-  color: #333;
-  background: rgb(212,212,221); /* Old browsers */
-  background: radial-gradient(ellipse at center top, rgba(255,255,255,1) 0%,rgba(174,174,183,1) 100%); /* W3C */
-}
-
-.jumbotron h1 {
-  font-size: 128px;
-  font-weight: 700;
-  color: white;
-  text-shadow: 0px 2px 0px #abc,
-               0px 4px 10px rgba(0,0,0,0.15),
-               0px 5px 2px rgba(0,0,0,0.1),
-               0px 6px 30px rgba(0,0,0,0.1);
-}
-
-.jumbotron p {
-  font-size: 28px;
-  font-weight: 100;
-}
-
-.main {
-   background: white;
-   color: #234;
-   border-top: 1px solid rgba(0,0,0,0.12);
-   padding-top: 30px;
-   padding-bottom: 40px;
-}
-
-.footer {
-   border-top: 1px solid rgba(255,255,255,0.2);
-   padding-top: 30px;
-}
-
-    --></style>
-</head>
-<body>
-  <div class="jumbotron text-center">
-    <div class="container">
-          <h1>Testing 123..</h1>
-                <p class="lead">This page is used to test the proper operation of the <a href="http://apache.org">Apache HTTP server</a> after it has been installed. If you can read this page it means that this site is working properly. This server is powered by <a href="http://centos.org">CentOS</a>.</p>
-                </div>
-  </div>
-  <div class="main">
-    <div class="container">
-       <div class="row">
-                        <div class="col-sm-6">
-                        <h2>Just visiting?</h2>
-                                        <p class="lead">The website you just visited is either experiencing problems or is undergoing routine maintenance.</p>
-                                        <p>If you would like to let the administrators of this website know that you've seen this page instead of the page you expected, you should send them e-mail. In general, mail sent to the name "webmaster" and directed to the website's domain should reach the appropriate person.</p>
-                                        <p>For example, if you experienced problems while visiting www.example.com, you should send e-mail to "webmaster@example.com".</p>
-                                </div>
-                                <div class="col-sm-6">
-                                        <h2>Are you the Administrator?</h2>
-                                        <p>You should add your website content to the directory <tt>/var/www/html/</tt>.</p>
-                                        <p>To prevent this page from ever being used, follow the instructions in the file <tt>/etc/httpd/conf.d/welcome.conf</tt>.</p>
-
-                                        <h2>Promoting Apache and CentOS</h2>
-                                        <p>You are free to use the images below on Apache and CentOS Linux powered HTTP servers.  Thanks for using Apache and CentOS!</p>
-                                        <p><a href="http://httpd.apache.org/"><img src="images/apache_pb.gif" alt="[ Powered by Apache ]"></a> <a href="http://www.centos.org/"><img src="images/poweredby.png" alt="[ Powered by CentOS Linux ]" height="31" width="88"></a></p>
-                                </div>
-                        </div>
-            </div>
-                </div>
-        </div>
-          <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6">
-            <h2>Important note:</h2>
-            <p class="lead">The CentOS Project has nothing to do with this website or its content,
-            it just provides the software that makes the website run.</p>
-
-            <p>If you have issues with the content of this site, contact the owner of the domain, not the CentOS project.
-            Unless you intended to visit CentOS.org, the CentOS Project does not have anything to do with this website,
-            the content or the lack of it.</p>
-            <p>For example, if this website is www.example.com, you would find the owner of the example.com domain at the following WHOIS server:</p>
-            <p><a href="http://www.internic.net/whois.html">http://www.internic.net/whois.html</a></p>
-          </div>
-          <div class="col-sm-6">
-            <h2>The CentOS Project</h2>
-            <p>The CentOS Linux distribution is a stable, predictable, manageable and reproduceable platform derived from
-               the sources of Red Hat Enterprise Linux (RHEL).<p>
-
-            <p>Additionally to being a popular choice for web hosting, CentOS also provides a rich platform for open source communities to build upon. For more information
-               please visit the <a href="http://www.centos.org/">CentOS website</a>.</p>
-          </div>
-        </div>
-                  </div>
-    </div>
-  </div>
-</body></html>
+  </style>
+ </HEAD>
+ 
+ <BODY>
+  <canvas id="pinkboard"></canvas>
+  <script>
+  /*
+ * Settings
+ */
+var settings = {
+  particles: {
+    length:   500, // maximum amount of particles
+    duration:   2, // particle duration in sec
+    velocity: 100, // particle velocity in pixels/sec
+    effect: -0.75, // play with this for a nice effect
+    size:      30, // particle size in pixels
+  },
+};
+ 
+(function(){var b=0;var c=["ms","moz","webkit","o"];for(var a=0;a<c.length&&!window.requestAnimationFrame;++a){window.requestAnimationFrame=window[c[a]+"RequestAnimationFrame"];window.cancelAnimationFrame=window[c[a]+"CancelAnimationFrame"]||window[c[a]+"CancelRequestAnimationFrame"]}if(!window.requestAnimationFrame){window.requestAnimationFrame=function(h,e){var d=new Date().getTime();var f=Math.max(0,16-(d-b));var g=window.setTimeout(function(){h(d+f)},f);b=d+f;return g}}if(!window.cancelAnimationFrame){window.cancelAnimationFrame=function(d){clearTimeout(d)}}}());
+ 
+/*
+ * Point class
+ */
+var Point = (function() {
+  function Point(x, y) {
+    this.x = (typeof x !== 'undefined') ? x : 0;
+    this.y = (typeof y !== 'undefined') ? y : 0;
+  }
+  Point.prototype.clone = function() {
+    return new Point(this.x, this.y);
+  };
+  Point.prototype.length = function(length) {
+    if (typeof length == 'undefined')
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+    this.normalize();
+    this.x *= length;
+    this.y *= length;
+    return this;
+  };
+  Point.prototype.normalize = function() {
+    var length = this.length();
+    this.x /= length;
+    this.y /= length;
+    return this;
+  };
+  return Point;
+})();
+ 
+/*
+ * Particle class
+ */
+var Particle = (function() {
+  function Particle() {
+    this.position = new Point();
+    this.velocity = new Point();
+    this.acceleration = new Point();
+    this.age = 0;
+  }
+  Particle.prototype.initialize = function(x, y, dx, dy) {
+    this.position.x = x;
+    this.position.y = y;
+    this.velocity.x = dx;
+    this.velocity.y = dy;
+    this.acceleration.x = dx * settings.particles.effect;
+    this.acceleration.y = dy * settings.particles.effect;
+    this.age = 0;
+  };
+  Particle.prototype.update = function(deltaTime) {
+    this.position.x += this.velocity.x * deltaTime;
+    this.position.y += this.velocity.y * deltaTime;
+    this.velocity.x += this.acceleration.x * deltaTime;
+    this.velocity.y += this.acceleration.y * deltaTime;
+    this.age += deltaTime;
+  };
+  Particle.prototype.draw = function(context, image) {
+    function ease(t) {
+      return (--t) * t * t + 1;
+    }
+    var size = image.width * ease(this.age / settings.particles.duration);
+    context.globalAlpha = 1 - this.age / settings.particles.duration;
+    context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
+  };
+  return Particle;
+})();
+ 
+/*
+ * ParticlePool class
+ */
+var ParticlePool = (function() {
+  var particles,
+      firstActive = 0,
+      firstFree   = 0,
+      duration    = settings.particles.duration;
+ 
+  function ParticlePool(length) {
+    // create and populate particle pool
+    particles = new Array(length);
+    for (var i = 0; i < particles.length; i++)
+      particles[i] = new Particle();
+  }
+  ParticlePool.prototype.add = function(x, y, dx, dy) {
+    particles[firstFree].initialize(x, y, dx, dy);
+   
+    // handle circular queue
+    firstFree++;
+    if (firstFree   == particles.length) firstFree   = 0;
+    if (firstActive == firstFree       ) firstActive++;
+    if (firstActive == particles.length) firstActive = 0;
+  };
+  ParticlePool.prototype.update = function(deltaTime) {
+    var i;
+   
+    // update active particles
+    if (firstActive < firstFree) {
+      for (i = firstActive; i < firstFree; i++)
+        particles[i].update(deltaTime);
+    }
+    if (firstFree < firstActive) {
+      for (i = firstActive; i < particles.length; i++)
+        particles[i].update(deltaTime);
+      for (i = 0; i < firstFree; i++)
+        particles[i].update(deltaTime);
+    }
+   
+    // remove inactive particles
+    while (particles[firstActive].age >= duration && firstActive != firstFree) {
+      firstActive++;
+      if (firstActive == particles.length) firstActive = 0;
+    }
+   
+   
+  };
+  ParticlePool.prototype.draw = function(context, image) {
+    // draw active particles
+    if (firstActive < firstFree) {
+      for (i = firstActive; i < firstFree; i++)
+        particles[i].draw(context, image);
+    }
+    if (firstFree < firstActive) {
+      for (i = firstActive; i < particles.length; i++)
+        particles[i].draw(context, image);
+      for (i = 0; i < firstFree; i++)
+        particles[i].draw(context, image);
+    }
+  };
+  return ParticlePool;
+})();
+ 
+/*
+ * Putting it all together
+ */
+(function(canvas) {
+  var context = canvas.getContext('2d'),
+      particles = new ParticlePool(settings.particles.length),
+      particleRate = settings.particles.length / settings.particles.duration, // particles/sec
+      time;
+ 
+  // get point on heart with -PI <= t <= PI
+  function pointOnHeart(t) {
+    return new Point(
+      160 * Math.pow(Math.sin(t), 3),
+      130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
+    );
+  }
+ 
+  // creating the particle image using a dummy canvas
+  var image = (function() {
+    var canvas  = document.createElement('canvas'),
+        context = canvas.getContext('2d');
+    canvas.width  = settings.particles.size;
+    canvas.height = settings.particles.size;
+    // helper function to create the path
+    function to(t) {
+      var point = pointOnHeart(t);
+      point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350;
+      point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350;
+      return point;
+    }
+    // create the path
+    context.beginPath();
+    var t = -Math.PI;
+    var point = to(t);
+    context.moveTo(point.x, point.y);
+    while (t < Math.PI) {
+      t += 0.01; // baby steps!
+      point = to(t);
+      context.lineTo(point.x, point.y);
+    }
+    context.closePath();
+    // create the fill
+    context.fillStyle = '#ea80b0';
+    context.fill();
+    // create the image
+    var image = new Image();
+    image.src = canvas.toDataURL();
+    return image;
+  })();
+ 
+  // render that thing!
+  function render() {
+    // next animation frame
+    requestAnimationFrame(render);
+   
+    // update time
+    var newTime   = new Date().getTime() / 1000,
+        deltaTime = newTime - (time || newTime);
+    time = newTime;
+   
+    // clear canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+   
+    // create new particles
+    var amount = particleRate * deltaTime;
+    for (var i = 0; i < amount; i++) {
+      var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+      var dir = pos.clone().length(settings.particles.velocity);
+      particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y);
+    }
+   
+    // update and draw particles
+    particles.update(deltaTime);
+    particles.draw(context, image);
+  }
+ 
+  // handle (re-)sizing of the canvas
+  function onResize() {
+    canvas.width  = canvas.clientWidth;
+    canvas.height = canvas.clientHeight;
+  }
+  window.onresize = onResize;
+ 
+  // delay rendering bootstrap
+  setTimeout(function() {
+    onResize();
+    render();
+  }, 10);
+})(document.getElementById('pinkboard'));
+  </script>
+ </BODY>
+</HTML>
