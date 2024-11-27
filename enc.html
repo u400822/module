@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PHPFuck</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+        * {
+            font-family: monospace !important;
+            font-size: 14px;
+            line-height: 1.4em;
+        }
+
+        .textarea {
+            height: 400px;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                PHPFuck: ([+.^])
+            </h1>
+            <p class="subtitle">
+                Using only 7 different characters to write and execute php.
+            </p>
+            <hr>
+
+            <p class="content">
+                Use the form below to convert your php script. Uncheck `Eval Code` to get back a plain string.
+            </p>
+            <div class="columns">
+                <div class="column">
+                    <textarea id="code" class="textarea" placeholder="Nhập Code Vô"></textarea>
+                    <label class="checkbox is-pulled-right">
+                        <input id="isEval" type="checkbox"> Eval Code
+                    </label>
+                </div>
+                <div class="column">
+                    <textarea id="output" class="textarea" placeholder="([+.^])" readonly></textarea>
+                    <button class="button is-small" id="download">Download</button>
+                    <button class="button is-small" id="copy">Copy</button>
+
+                    <div class="is-pulled-right">
+                        <span id="stats">0 chars.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <h1 class="title is-5">Links</h1>
+                <ul>
+                    <li>Test any encoded code at <a href="https://repl.it/languages/php">repl.it</a> or <a
+                            href="http://3v4l.org/">3v4l.org</a>.</li>
+                </ul>
+
+            </div>
+
+        </div>
+    </section>
+    <script src="./phpfuck.js"></script>
+    <script>
+        const phpfuck = new PHPFuck();
+
+        isEval.addEventListener('input', function (event) {
+            render(code.value, event.target.checked);
+        })
+        code.addEventListener('input', function (event) {
+            render(event.target.value, isEval.checked);
+        });
+        download.addEventListener('click', function () {
+            const blob = new Blob([output.value], {
+                type: "application/php"
+            });
+            const elem = document.createElement('a');
+            elem.href = URL.createObjectURL(blob);
+            elem.download = 'phpfucked.php';
+            document.body.appendChild(elem);
+            elem.click();
+            document.body.removeChild(elem);
+        });
+        copy.addEventListener('click', function () {
+            output.select();
+            try {
+                document.execCommand('copy') || alert('Copy failed :/');;
+            } catch (error) {
+                alert('Copy failed :/');
+            }
+            window.getSelection().removeAllRanges();
+        });
+
+        function render(code, eval) {
+            const encoded = phpfuck.encode(code, code && eval && 'create_function');
+            document.getElementById("stats").textContent = `${encoded.length} chars.`;
+            output.value = encoded;
+        }
+    </script>
+</body>
+
+</html>
